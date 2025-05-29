@@ -113,7 +113,7 @@ const Formulario = () => {
             const response = await postApi(dataToSend);
             
             if (response) {
-                navigate('/obtener-post');
+                navigate('/trade-admin');
                 window.alert('Formulario enviado exitosamente')
                 toast.success('Formulario enviado exitosamente');
 
