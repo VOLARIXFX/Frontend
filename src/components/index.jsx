@@ -39,6 +39,11 @@ const Index = () => {
                 {t('conocer_mas')}
               </button>
             </Link>
+            <Link to='/admin-panelCplogin'>
+              <button className="bg-transparent border border-gray-600 text-white font-semibold px-6 py-3 rounded hover:bg-gray-800 transition">
+                Login
+              </button>
+            </Link>
           </div>
         </div>
         <div className="hidden md:flex flex-1 justify-center">
