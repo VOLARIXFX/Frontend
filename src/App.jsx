@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { HashRouter  as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Index from "./components/index";
 import Login from "./components/login";
 import Usuarioss from "./components/administrador/Usuarios";
@@ -27,7 +27,6 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <Router>
           <Routes>
             <Route
               path="/admin-formulario"
@@ -133,7 +132,6 @@ function App() {
               }
             />
           </Routes>
-        </Router>
       </AuthProvider>
     </>
   );
