@@ -77,7 +77,7 @@ const Login = () => {
           {/* <span className="text-3xl font-extrabold tracking-wide">Volarix Capital</span> */}
         </div>
       </div>
-      <div className="w-full max-w-md p-8 rounded-2xl shadow-xl border bg-[#181e2a] border-[#23293a]">
+      <div className="w-full max-w-md p-4 rounded-2xl shadow-xl border bg-[#181e2a] border-[#23293a]">
         <h2 className="text-2xl font-bold text-center mb-2">Iniciar Sesión</h2>
         <p className="text-center mb-6 text-gray-300">
           Ingresa tus credenciales para acceder a la plataforma
