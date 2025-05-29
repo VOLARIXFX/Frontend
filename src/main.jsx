@@ -19,4 +19,5 @@ createRoot(document.getElementById('root')).render(
       </ThemeProvider>
     </HashRouter>
   </StrictMode>
-);
+);:contentReference[oaicite:20]{index=20}
+
