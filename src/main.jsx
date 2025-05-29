@@ -1,4 +1,4 @@
-import './i18n' // Importa esto al inicio, ajusta la ruta si es necesario
+import './i18n' 
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
