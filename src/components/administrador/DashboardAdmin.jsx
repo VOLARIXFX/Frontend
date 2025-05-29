@@ -7,8 +7,6 @@ import UseCrud from "../../hook/Crud";
 import { useAuth } from "../../../AuthContext";
 import Volarix from "../../Img/Volarix.png";
 import { Bar } from "react-chartjs-2";
-import { Link } from 'react-router-dom'
-
 import {
   Chart as ChartJS,
   BarElement,
@@ -167,7 +165,7 @@ const DashboardAdmin = () => {
             Panel Administración
           </h1>
           <div className="flex justify-end mb-6">
-            <Link to='/admin-formulario'>
+            <Link to="/admin-formulario">
             <button 
               className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl ${
                 darkMode 
@@ -178,7 +176,7 @@ const DashboardAdmin = () => {
               <span className="text-xl">+</span>
               Crear operación
             </button>
-              </Link>
+            </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div
@@ -439,3 +437,4 @@ const DashboardAdmin = () => {
 };
 
 export default DashboardAdmin;
+
