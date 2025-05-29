@@ -14,9 +14,11 @@ const CirclePhoto = () => {
     const { t } = useTranslation();
     
 
-    const imagen = (auth && auth.user && auth.user.photo)
-        ? `${API_URL}/uploads/${auth.user.photo}`
-        : `${Avatar}`; 
+    const isValidPhoto = auth?.user?.photo && auth.user.photo.trim() !== "";
+    const imagen = isValidPhoto
+    ? `${API_URL}/uploads/${auth.user.photo}`
+    : Avatar;
+    console.log('Avatar importado:', Avatar);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -52,16 +54,15 @@ const CirclePhoto = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 className="focus:outline-none"
             >
-                <img 
-                    src={imagen} 
-                    alt="Foto de perfil" 
-                    className="w-10 h-10 mr-6 rounded-full object-cover border-2 border-gray-200 hover:border-gray-300 transition-all cursor-pointer"
-                    onError={(e) => {
-                        console.log('Error al cargar la imagen:', e);
-                        e.target.onerror = null;
-                        e.target.src = 'https://via.placeholder.com/40'; // Fallback en caso de error de carga
-                    }}
-                />
+        <img
+        src={imagen}
+        alt="Perfil"
+        onError={(e) => {
+        e.target.onerror = null;
+      e.target.src = Avatar;
+        }}
+     className="rounded-full w-10 h-10"
+        />
             </button>
 
             {isOpen && (
