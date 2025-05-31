@@ -57,7 +57,6 @@ const EstadisticasPage = () => {
     return years
   }
 
-  // Generar meses disponibles hasta la fecha actual
   const generateAvailableMonths = (year) => {
     const currentYear = new Date().getFullYear()
     const currentMonth = new Date().getMonth() + 1
@@ -203,7 +202,6 @@ const EstadisticasPage = () => {
     return `${(value || 0).toFixed(2)}%`
   }
 
-  // --- Configuración de gráficas ApexCharts ---
   const resumen = estadisticas?.[0] || {}
   const totalOps = Number(resumen.operaciones_totales) || 0
   const ganadoras = Number(resumen.operaciones_ganadoras) || 0
@@ -229,7 +227,7 @@ const EstadisticasPage = () => {
     Number(realtimeStats?.operaciones_perdedoras) || 0,
   ]
 
-  const pieLabels = ["Ganadoras", "Perdedoras"]
+  const pieLabels = [t('ganadoras'), t('perdedoras')]
 
   const chartColors = darkMode
     ? ["#10B981", "#EF4444", "#6366F1", "#F59E42"]
@@ -435,7 +433,7 @@ const EstadisticasPage = () => {
         <div className="p-2 sm:p-4 lg:p-6">
           <div className="max-w-7xl mx-auto space-y-4 lg:space-y-6">
             {/* Filtro moderno integrado */}
-            <div className={`max-w-6xl mx-auto w-full mb-4`}>
+            <div className={`max-w-7xl mx-auto w-[100%] mb-4`}>
               <div className={`${darkMode ? "bg-gray-800" : "bg-white"} rounded-lg shadow-sm p-4 mb-4`}>
                 <h2 className={`text-base font-semibold ${darkMode ? "text-white" : "text-gray-900"} mb-3`}>{t('tipo_filtro')}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
@@ -686,7 +684,7 @@ const EstadisticasPage = () => {
                   <ReactApexChart
                     options={{
                       chart: { type: 'bar', toolbar: { show: false } },
-                      xaxis: { categories: ['Ganadoras', 'Perdedoras'] },
+                      xaxis: { categories: [t('ganadoras'), t('perdedoras')] },
                       colors: ['#10B981', '#EF4444'],
                       plotOptions: { bar: { borderRadius: 6, columnWidth: '50%' } },
                       dataLabels: { enabled: true },
@@ -694,7 +692,7 @@ const EstadisticasPage = () => {
                     }}
                     series={[
                       {
-                        name: 'Operaciones',
+                        name: t('operaciones'),
                         data: [ganadoras, perdedoras]
                       }
                     ]}
@@ -708,7 +706,7 @@ const EstadisticasPage = () => {
                   <ReactApexChart
                     options={{
                       chart: { type: 'bar', toolbar: { show: false } },
-                      xaxis: { categories: ['Ganancia', 'Pérdida'] },
+                      xaxis: { categories: [t('ganancia'), t('perdida')] },
                       colors: ['#3B82F6', '#F59E42'],
                       plotOptions: { bar: { horizontal: true, borderRadius: 6, barHeight: '50%' } },
                       dataLabels: { enabled: true },
@@ -716,7 +714,7 @@ const EstadisticasPage = () => {
                     }}
                     series={[
                       {
-                        name: 'Promedio',
+                        name: t('promedio'),
                         data: [promedioGanancia, Math.abs(promedioPerdida)]
                       }
                     ]}
@@ -731,7 +729,7 @@ const EstadisticasPage = () => {
                     <ReactApexChart
                       options={{
                         chart: { type: 'pie', toolbar: { show: false } },
-                        labels: ['Ganadoras', 'Perdedoras'],
+                        labels: [t('ganadoras'), t('perdedoras')],
                         colors: [darkMode ? "#10B981" : "#22d3ee", darkMode ? "#EF4444" : "#f87171"],
                         legend: { show: true, position: 'bottom', labels: { colors: darkMode ? "#d1d5db" : "#374151" } },
                         dataLabels: { enabled: true, style: { fontSize: "14px", fontFamily: "inherit", fontWeight: "500" }, formatter: function (val) { return val.toFixed(1) + "%" } },
