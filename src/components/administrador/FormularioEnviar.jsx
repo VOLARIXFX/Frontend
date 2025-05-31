@@ -20,7 +20,7 @@ const Formulario = () => {
         tipo_operacion: '',
         divisa_operada: '',
         precio_apertura: '',
-        precio_cierre: '',
+        profit: '',
         resultado: '',
         stop_loss: '',
         take_profit: '',
@@ -44,8 +44,8 @@ const Formulario = () => {
         if (!formData.precio_apertura) {
             errors.precio_apertura = "El precio de apertura es requerido";
         }
-        if (!formData.precio_cierre) {
-            errors.precio_cierre = "El precio de cierre es requerido";
+        if (!formData.profit) {
+            errors.profit = "El profit es requerido";
         }
         if (!formData.resultado) {
             errors.resultado = "Debe seleccionar un resultado";
@@ -122,7 +122,7 @@ const Formulario = () => {
                     tipo_operacion: '',
                     divisa_operada: '',
                     precio_apertura: '',
-                    precio_cierre: '',
+                    profit: '',
                     resultado: '',
                     stop_loss: '',
                     take_profit: '',
@@ -216,12 +216,12 @@ const Formulario = () => {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                                 <div>
-                                    <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`} htmlFor="precio_cierre">Precio de cierre</label>
+                                    <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`} htmlFor="profit">Profit</label>
                                     <input
                                         type="number"
-                                        id="precio_cierre"
-                                        name="precio_cierre"
-                                        value={formData.precio_cierre}
+                                        id="profit"
+                                        name="profit"
+                                        value={formData.profit}
                                         onChange={handleInputChange}
                                         className={`w-full p-3 rounded border focus:outline-none focus:ring-2 focus:border-blue-500 dark:focus:border-blue-500 ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 text-gray-900 border-gray-300'}`}
                                         required
@@ -344,7 +344,7 @@ const Formulario = () => {
                                             tipo_operacion: '',
                                             divisa_operada: '',
                                             precio_apertura: '',
-                                            precio_cierre: '',
+                                            profit: '',
                                             resultado: '',
                                             stop_loss: '',
                                             take_profit: '',
