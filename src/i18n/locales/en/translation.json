@@ -70,10 +70,12 @@
   "metrica_riesgo": "Risk Metrics",
   "aplicar_filtro_historico": "Apply Historical Filter",
   "filtros": "Filters",
+  "todos_los_derechos_reservados": "All rights reserved.",
   "periodo_actual": "Current Period",
   "periodo_historico": "Historical Period",
   "seleccionar_periodo": "Select Period",
   "seleccionar_ano": "Select Year",
+  "potenciando_trading": "Boosting your trading with advanced analysis and modern statistics.",
   "seleccionar_mes": "Select Month",
   "seleccionar_semana": "Select Week",
   "seleccionar_semestre": "Select Semester",
@@ -212,5 +214,6 @@
 "operaciones_perdedoras": "Losing Operations",
 "metricas_riesgo": "Risk Metrics",
 "drawdown_maximo": "Max Drawdown",
-"drawdown_porcentaje": "Drawdown %"
+"drawdown_porcentaje": "Drawdown %",
+"ultimas_estadisticas_del_mes":"Statistics for the last 30 days"
 }
