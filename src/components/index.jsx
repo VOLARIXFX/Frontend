@@ -150,7 +150,6 @@ const Index = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">{t('enlaces_rapidos')}</h3>
             <ul className="space-y-2">
-              <li><Link to="/login" className="hover:text-green-400 transition">{t('iniciar_sesion')}</Link></li>
               <li><Link to="/index-estaditica" className="hover:text-green-400 transition">{t('estadisticas')}</Link></li>
               <li><Link to="/index-soporte" className="hover:text-green-400 transition">{t('soporte')}</Link></li>
             </ul>
