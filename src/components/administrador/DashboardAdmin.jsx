@@ -165,6 +165,8 @@ const DashboardAdmin = () => {
             Panel Administración
           </h1>
           <div className="flex justify-end mb-6">
+          <p className="text-2xl mr-[55%] text-gray-400 mb-6">Estadisticas de los ultimos 30 dias</p>
+
             <Link to="/admin-formulario">
             <button 
               className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl ${
@@ -290,9 +292,9 @@ const DashboardAdmin = () => {
 
                     <div>
                       <div className="text-xs  text-gray-400">
-                        Precio Cierre
+                        Profit
                       </div>
-                      <div className="">{ultimaOperacion.precio_cierre}</div>
+                      <div className="">${ultimaOperacion.profit}</div>
                     </div>
                     <div>
                       <div className="text-xs ml-6 text-gray-400">
@@ -437,4 +439,3 @@ const DashboardAdmin = () => {
 };
 
 export default DashboardAdmin;
-
