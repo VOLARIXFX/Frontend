@@ -9,6 +9,7 @@ import { Brush } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../../AuthContext'
 import { useTranslation } from 'react-i18next'
+import moment from 'moment';
 
 const Post = () => {
     const { darkMode } = useTheme();
@@ -44,42 +45,27 @@ const Post = () => {
     const dd = String(today.getDate()).padStart(2, '0')
     const maxDate = `${yyyy}-${mm}-${dd}`
 
-    const formatearFecha = (fecha) => {
-        if (!fecha) return ''
-        const opciones = { 
-            year: 'numeric', 
-            month: 'numeric', 
-            day: 'numeric',
-            timeZone: 'UTC'
+    const mostrarFecha = (fecha) => {
+        if (!fecha) return '';
+        if (fecha.includes('T')) {
+            return moment(fecha).local().format('YYYY-MM-DD');
         }
-       
-         try {
-            const date = new Date(fecha);
-            if (isNaN(date.getTime())) {
-                return t('fecha_invalida');
-            }
-            return date.toLocaleDateString('es-ES', opciones);
-        } catch (e) {
-            console.error('Error formateando fecha:', fecha, e);
-            return t('fecha_invalida');
+        return fecha.split(' ')[0];
+    };
+
+    const mostrarHora = (hora) => {
+        if (!hora) return '';
+        if (hora.includes('T')) {
+            return moment(hora).local().format('HH:mm');
         }
-    }
-
-    const formatearHora = (hora) => {
-        if (!hora) return ''
-        const tiempoSinSegundos = hora.split('.')[0]; 
-        const [horas, minutos] = tiempoSinSegundos.split(':');
-
-        const horasNum = parseInt(horas, 10);
-        const minutosNum = parseInt(minutos, 10);
-        
-        if (isNaN(horasNum) || isNaN(minutosNum)) return t('hora_invalida');
-
-        const horasFormateadas = horasNum === 0 ? '0' : String(horasNum);
-        const minutosFormateados = minutosNum < 10 ? '0' + minutosNum : String(minutosNum);
-
-        return `${horasFormateadas}:${minutosFormateados}`;
-    }
+        if (hora.includes('.')) {
+            const soloHora = hora.split(' ')[1] || hora.split('.')[0];
+            return soloHora.split(':').slice(0,2).join(':');
+        }
+        const partes = hora.split(' ');
+        const horaStr = partes[1] || partes[0];
+        return horaStr.split(':').slice(0,2).join(':');
+    };
 
     const formatearNumero = (numero) => {
         if (!numero && numero !== 0) return "--";
@@ -242,8 +228,8 @@ const Post = () => {
                             <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} mt-2`}>
                                 {filtroActivo 
                                     ? posts.length > 0 
-                                        ? t('mostrando_operaciones_fecha', { count: posts.length, fecha: formatearFecha(fechaPost.fecha_post) })
-                                        : t('no_operaciones_fecha', { fecha: formatearFecha(fechaPost.fecha_post) })
+                                        ? t('mostrando_operaciones_fecha', { count: posts.length, fecha: mostrarFecha(fechaPost.fecha_post) })
+                                        : t('no_operaciones_fecha', { fecha: mostrarFecha(fechaPost.fecha_post) })
                                     : t('mostrando_operaciones_total', { count: todosLosPosts.length })
                                 }
                             </p>
@@ -370,7 +356,7 @@ const Post = () => {
                                 <div className="col-span-full text-center py-12">
                                     <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} text-lg`}>
                                         {filtroActivo 
-                                            ? t('no_operaciones_fecha', { fecha: formatearFecha(fechaPost.fecha_post) })
+                                            ? t('no_operaciones_fecha', { fecha: mostrarFecha(fechaPost.fecha_post) })
                                             : t('no_operaciones_total')
                                         }
                                     </p>
@@ -397,7 +383,7 @@ const Post = () => {
                                                         {post.divisa_operada}
                                                     </h3>
                                                     <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                                        {formatearFecha(post.fecha_post)}
+                                                        {mostrarFecha(post.fecha_post)}
                                                     </p>
                                                 </div>
                                                 <span className={`px-3 py-1 rounded-full text-sm font-medium ${
@@ -419,8 +405,8 @@ const Post = () => {
                                                     <p className={`font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>{formatearNumero(post.precio_apertura)}</p>
                                                 </div>
                                                 <div>
-                                                    <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{t('precio_cierre')}</p>
-                                                    <p className={`font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>{formatearNumero(post.precio_cierre)}</p>
+                                                    <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{t('profit')}</p>
+                                                    <p className={`font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>{formatearNumero(post.profit)}</p>
                                                 </div>
                                                 <div>
                                                     <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{t('stop_loss')}</p>
@@ -447,19 +433,13 @@ const Post = () => {
                                                          post.resultado === 'breakeven' ? t('breakeven') : '--'}
                                                     </span>
                                                 </div>
-                                                <div className="mr-20">
-                                                    <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{t('profit')}</p>
-                                                    <p className={`font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                                       $ {formatearNumero(post.profit)}
-                                                    </p>
-                                                </div>
                                             </div>
 
                                             <div className="flex items-center justify-between mb-4">
                                                 <div>
                                                     <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{t('horario')}</p>
                                                     <p className={`font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                                        {formatearHora(post.hora_apertura)} - {formatearHora(post.hora_cierre)}
+                                                        {mostrarHora(post.hora_apertura)} - {mostrarHora(post.hora_cierre)}
                                                     </p>
                                                 </div>
                                             </div>
